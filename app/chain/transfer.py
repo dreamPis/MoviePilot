@@ -252,7 +252,7 @@ class TransferChain(ChainBase):
                     continue
 
                 # 汇总信息
-                mkey = (file_mediainfo.tmdb_id, meta.begin_season)
+                mkey = (file_mediainfo.tmdb_id, file_meta.begin_season)
                 if mkey not in medias:
                     # 新增信息
                     metas[mkey] = file_meta
@@ -300,7 +300,7 @@ class TransferChain(ChainBase):
                 self.scrape_metadata(path=transferinfo.target_path, mediainfo=media)
                 # 发送通知
                 se_str = None
-                if mediainfo.type == MediaType.TV:
+                if media.type == MediaType.TV:
                     se_str = f"{meta.season} {StringUtils.format_ep(season_episodes[mkey])}"
                 self.send_transfer_message(meta=meta,
                                            mediainfo=media,
